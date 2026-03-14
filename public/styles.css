@@ -1,0 +1,285 @@
+/* ============================================================
+   SOLARPUNK CHAT — CSS-only reskin
+   Drop this file in place of your existing styles.css.
+   Zero JS changes. Zero HTML changes.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --cream:        #f7f3e8;
+  --cream-mid:    #ede8d5;
+  --gold:         #d4a827;
+  --gold-light:   #f0c84a;
+  --green-soft:   #7ab648;
+  --green-mid:    #4e8b35;
+  --green-deep:   #2d5a1b;
+  --wood:         #8b5e3c;
+  --wood-light:   #c49a6c;
+  --sky-top:      #c8e6a0;
+  --sky-bottom:   #f7f3e8;
+  --shadow:       rgba(45, 90, 27, 0.12);
+  --border:       rgba(78, 139, 53, 0.25);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-weight: 400;
+  margin: 0;
+  min-height: 100vh;
+
+  /* Sky gradient background */
+  background:
+    /* Leaf silhouettes — top left cluster */
+    radial-gradient(ellipse 38px 55px at 4% 8%,  rgba(78,139,53,0.13) 70%, transparent 71%),
+    radial-gradient(ellipse 28px 42px at 7% 4%,  rgba(78,139,53,0.10) 70%, transparent 71%),
+    radial-gradient(ellipse 22px 34px at 2% 14%, rgba(78,139,53,0.09) 70%, transparent 71%),
+    /* Leaf silhouettes — bottom right cluster */
+    radial-gradient(ellipse 40px 58px at 97% 92%, rgba(78,139,53,0.12) 70%, transparent 71%),
+    radial-gradient(ellipse 26px 40px at 94% 97%, rgba(78,139,53,0.09) 70%, transparent 71%),
+    radial-gradient(ellipse 20px 30px at 99% 85%, rgba(78,139,53,0.08) 70%, transparent 71%),
+    /* Solar panel geometric motif — subtle grid top-right */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(212,168,39,0.06) 28px,
+      rgba(212,168,39,0.06) 29px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 28px,
+      rgba(212,168,39,0.06) 28px,
+      rgba(212,168,39,0.06) 29px
+    ),
+    /* Main sky gradient */
+    linear-gradient(170deg, var(--sky-top) 0%, var(--sky-bottom) 60%, #fdf8ee 100%);
+
+  background-attachment: fixed;
+  color: var(--green-deep);
+}
+
+/* ── Main Chat Container ────────────────────────────────────── */
+#mario-chat {
+  max-width: 620px;
+  margin: 40px auto;
+  border: none;
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 4px 6px var(--shadow),
+    0 12px 40px rgba(45, 90, 27, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(247, 243, 232, 0.92);
+  backdrop-filter: blur(8px);
+  position: relative;
+
+  /* Warm sunlight glow on the card */
+  background-image:
+    radial-gradient(ellipse 80% 30% at 50% 0%, rgba(240,200,74,0.15) 0%, transparent 70%);
+}
+
+/* Decorative vine border — pure CSS, left edge */
+#mario-chat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: linear-gradient(
+    180deg,
+    var(--green-soft)  0%,
+    var(--gold)        25%,
+    var(--green-mid)   50%,
+    var(--gold-light)  75%,
+    var(--green-soft)  100%
+  );
+  border-radius: 20px 0 0 20px;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+h2 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 16px 24px 14px 28px;
+  margin: 0;
+  color: var(--green-deep);
+
+  background: linear-gradient(
+    135deg,
+    rgba(122,182,72,0.18) 0%,
+    rgba(240,200,74,0.12) 100%
+  );
+  border-bottom: 1px solid var(--border);
+  position: relative;
+
+  /* Leaf emoji accent */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h2::before {
+  content: '🌿';
+  font-size: 18px;
+  filter: saturate(1.2);
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 28px; right: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── Chat Window ────────────────────────────────────────────── */
+#chat-window {
+  height: 400px;
+  overflow-y: auto;
+  background:
+    /* Faint leaf-vein texture */
+    repeating-linear-gradient(
+      120deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(122,182,72,0.04) 60px,
+      rgba(122,182,72,0.04) 61px
+    ),
+    repeating-linear-gradient(
+      60deg,
+      transparent 0px,
+      transparent 80px,
+      rgba(212,168,39,0.03) 80px,
+      rgba(212,168,39,0.03) 81px
+    ),
+    linear-gradient(180deg, #f5f1e4 0%, #faf7ee 100%);
+  padding: 8px 0;
+}
+
+/* Scrollbar styling */
+#chat-window::-webkit-scrollbar { width: 6px; }
+#chat-window::-webkit-scrollbar-track { background: transparent; }
+#chat-window::-webkit-scrollbar-thumb {
+  background: var(--green-soft);
+  border-radius: 99px;
+}
+
+/* ── Messages ───────────────────────────────────────────────── */
+#output p {
+  padding: 12px 16px;
+  margin: 6px 20px;
+  border-bottom: none;
+  color: var(--green-deep);
+  background: rgba(255,255,255,0.65);
+  border-radius: 14px;
+  border: 1px solid rgba(122,182,72,0.18);
+  box-shadow: 0 1px 3px rgba(45,90,27,0.07);
+  line-height: 1.6;
+  position: relative;
+}
+
+#output p::before {
+  content: '🌱';
+  position: absolute;
+  right: 12px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  opacity: 0.45;
+}
+
+#output strong {
+  color: var(--green-mid);
+  font-weight: 700;
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* ── Feedback (typing indicator area) ──────────────────────── */
+#feedback p {
+  color: var(--wood-light);
+  padding: 10px 0;
+  margin: 0 24px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* ── Inputs ─────────────────────────────────────────────────── */
+input {
+  padding: 13px 20px 13px 28px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.7);
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  display: block;
+  width: 100%;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--green-deep);
+  transition: background 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--wood-light);
+  font-weight: 500;
+}
+
+input:focus {
+  background: rgba(255,255,255,0.95);
+  box-shadow: inset 3px 0 0 var(--green-soft);
+}
+
+/* Handle input gets a small leaf icon via background */
+#handle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237ab648' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  background-color: rgba(255,255,255,0.7);
+}
+
+#message {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237ab648' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  background-color: rgba(255,255,255,0.7);
+}
+
+/* ── Send Button ─────────────────────────────────────────────── */
+button#send {
+  background: linear-gradient(
+    135deg,
+    var(--green-mid)  0%,
+    var(--green-soft) 60%,
+    var(--gold)       100%
+  );
+  color: #fff;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 0;
+  padding: 15px 0;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+button#send:hover {
+  filter: brightness(1.08) saturate(1.1);
+}
+
+button#send:active {
+  filter: brightness(0.96);
+}
