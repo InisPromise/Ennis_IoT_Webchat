@@ -4,14 +4,16 @@
   "description": "A real-time chat application using web sockets with the socket.io JS library. Additionally utilizes TensorFlow.js to implement word-censoring for chat messages and a Firebase backend for persistent conversation.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
-  
   "author": "me",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "firebase": "^12.10.0",
+    "firebase-admin": "^13.7.0",
     "socket.io": "^4.8.3"
   },
   "devDependencies": {
