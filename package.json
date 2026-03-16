@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js", 
+    "live_link": "ngrok http 4000"
   },
   "author": "me",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "express": "^5.2.1",
     "firebase": "^12.10.0",
     "firebase-admin": "^13.7.0",
+    "ngrok": "^5.0.0-beta.2",
     "socket.io": "^4.8.3"
   },
   "devDependencies": {

@@ -28,6 +28,13 @@ btn.addEventListener('click', function(){
   });
 });
 
+//adding ctrl+ enter shortcut to send message for user accessibility
+message.addEventListener('keydown', function(e){
+  if (e.key === 'Enter' && e.ctrlKey) {
+    btn.click();
+  }
+});
+
 // Listen for events
 socket.on('chat', function(data){
     output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
